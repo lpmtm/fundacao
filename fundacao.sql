@@ -106,6 +106,7 @@ CREATE TABLE fundacao.aluno_avaliacao (
     PRIMARY KEY (id_aluno, id_avaliacao)
 );
 
+
 -- Populando tabelas
 SELECT *FROM fundacao.aluno;
 INSERT INTO fundacao.aluno(nome_aluno, email_aluno) VALUES
@@ -162,7 +163,6 @@ INSERT INTO fundacao.boletim(frequencia_boletim, desempenho_boletim)VALUES
 ('100', '8'),
 ('100', '9');
 
-
 SELECT *FROM fundacao.certificado
 INSERT INTO fundacao.certificado(data_conclusao)VALUES
 ('2024-02-01'),
@@ -171,12 +171,10 @@ INSERT INTO fundacao.certificado(data_conclusao)VALUES
 ('2025-11-09'),
 ('2024-12-12');
 
--- Arrumandos as tabelas
+
+-- exclusao de linhas
 DELETE FROM fundacao.avaliacao
 WHERE id_curso IS NULL OR id_aluno IS NULL;
 
 DELETE FROM fundacao.eventos
 WHERE id_curso IS NULL;
-
-
-
