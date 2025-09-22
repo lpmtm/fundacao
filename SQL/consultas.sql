@@ -1,11 +1,12 @@
--- Adcionando linhas em todas as tabelas
+--Consultas
+--Inserções nas tabelas 
 SELECT *FROM fundacao.aluno
 INSERT INTO fundacao.aluno(id_aluno, nome_aluno, email_aluno)VALUES
-('30073', 'Caroline Lopes', 'carolinelopes@gmail.com'),
-('30071', 'Ian Melo', 'ianmelo@gmail.com'),
 ('30120', 'Alessandro Ribeiro', 'alessandroribeiro@gmail.com'),
 ('30022', 'Amanda Dahm', 'amandadahm@gmail.com'),
-('30074', 'Eduardo Lima', 'eduardolima@gmail.com');
+('30073', 'Caroline Lopes', 'carolinelopes@gmail.com'),
+('30074', 'Eduardo Lima', 'eduardolima@gmail.com'),
+('30071', 'Ian Melo', 'ianmelo@gmail.com');
 
 SELECT *FROM fundacao.professores
 INSERT INTO fundacao.professores(id_professor, nome_professor, email_professor) VALUES
@@ -21,7 +22,8 @@ INSERT INTO fundacao.patrocinador(id_patrocinador, nome_patrocinador) VALUES
 ('202', 'BRB'),
 ('203', 'GDF'),
 ('204', 'SEBRAE'),
-('205', 'Alura');
+('205', 'Alura'),
+('206', 'IESB');
 
 SELECT *FROM fundacao.curso;
 INSERT INTO fundacao.curso(id_curso, duracao_curso, nome_curso, nivel_curso)VALUES
@@ -40,51 +42,82 @@ INSERT INTO fundacao.eventos(id_eventos, nome_evento, data_eventos)VALUES
 ('705', 'InovaLab', '2025-04-09');
 
 SELECT *FROM fundacao.avaliacao
-INSERT INTO fundacao.avaliacao(id_avaliacao, nota_avaliacao)VALUES
-('901', '8'),
-('902', '8'),
-('903', '7'),
-('904', '7'),
-('905', '8');
+INSERT INTO fundacao.avaliacao(id_avaliacao, nota_avaliacao, id_curso, id_aluno)VALUES
+('901', '8', '001', '30120'),
+('902', '8', '002', '30022'),
+('903', '7', '003', '30071'),
+('904', '7', '004', '30074'),
+('905', '8', '005', '30073');
 
 SELECT *FROM fundacao.boletim
-INSERT INTO fundacao.boletim(id_boletim, frequencia_boletim, desempenho_boletim)VALUES
-('801', '100', '10'),
-('802', '100', '10'),
-('803', '100', '8'),
-('804', '100', '8'),
-('805', '100', '9');
+INSERT INTO fundacao.boletim(id_boletim, frequencia_boletim, desempenho_boletim, id_curso, id_avaliacao, id_aluno)VALUES
+('801', '100', '10', '001', '901', '30120'),
+('802', '100', '10', '002', '902', '30022'),
+('803', '100', '8', '003', '903', '30071'),
+('804', '100', '8', '004', '904', '30074'),
+('805', '100', '9', '005', '905', '30073');
 
 SELECT *FROM fundacao.certificado
-INSERT INTO fundacao.certificado(id_certificado, data_conclusao)VALUES
-('401', '2024-02-01'),
-('402', '2024-07-01'),
-('403', '2025-10-06'),
-('404', '2025-11-09'),
-('405', '2024-12-12');
+INSERT INTO fundacao.certificado(id_certificado, data_conclusao, id_curso, id_boletim, id_aluno)VALUES
+('401', '2024-02-01', '001', '801', '30120'),
+('402', '2024-07-01', '002', '802', '30022'),
+('403', '2025-10-06', '003', '803', '30071'),
+('404', '2025-11-09', '004', '804', '30074'),
+('405', '2024-12-12', '005', '805', '30073');
 
+--Inserções nas tabelas de ligação
+SELECT *FROM fundacao.ministra_curso 
+INSERT INTO fundacao.ministra_curso(id_curso, id_professor)VALUES
+('003', '101'),
+('001', '102'),
+('005', '103'),
+('004', '104'),
+('002', '105');
 
--- Atualizando a tabela fundacao.curso e fundacao.eventos
-SELECT *FROM fundacao.curso
-UPDATE fundacao.curso
-SET nivel_curso = 'Intermediário'
-WHERE nome_curso = 'Python com Estrutura de Dados';
+SELECT *FROM fundacao.eventos_patrocinador
+INSERT INTO fundacao.eventos_patrocinador(id_eventos, id_patrocinador)VALUES
+('701', '204'),
+('702', '201'),
+('703', '203'),
+('704', '205'),
+('705', '202');
 
+SELECT *FROM fundacao.aluno_curso
+INSERT INTO fundacao.aluno_curso(id_curso, id_aluno)VALUES
+('001', '30120'),
+('002', '30022'),
+('003', '30071'),
+('004', '30074'),
+('005', '30073');
+
+-- Atualizando a tabela fundacao.eventos
 SELECT *FROM fundacao.eventos
+
 UPDATE fundacao.eventos
-SET nome_evento = 'Semana Dev'
-WHERE nome_evento = 'InovaLab';
+SET id_curso = '001'
+WHERE id_eventos = '701';
 
+UPDATE fundacao.eventos
+SET id_curso = '002'
+WHERE id_eventos = '702';
 
--- exclusao de linhas que estão vazias em: fundacao.avaliacao e em fundacao.eventos
-DELETE FROM fundacao.avaliacao
-WHERE id_curso IS NULL OR id_aluno IS NULL;
+UPDATE fundacao.eventos
+SET id_curso = '003'
+WHERE id_eventos = '703';
 
-DELETE FROM fundacao.eventos
-WHERE id_curso IS NULL;
+UPDATE fundacao.eventos
+SET id_curso = '004'
+WHERE id_eventos = '704';
 
+UPDATE fundacao.eventos
+SET id_curso = '005'
+WHERE id_eventos = '705';
 
--- Esta consulta mostra o nome do aluno e o nome do curso que ele está fazendo.
+-- exclusao de linhas
+DELETE FROM fundacao.patrocinador
+WHERE id_patrocinador = '206';
+
+-- Consulta em duas tabelas: Essa consulta mostra o nome do aluno e o nome do curso que ele está fazendo.
 SELECT
     A.nome_aluno,
     C.nome_curso
@@ -94,7 +127,7 @@ JOIN fundacao.aluno_curso AS AC
 JOIN fundacao.curso AS C
     ON AC.id_curso = C.id_curso;
 
--- Esta consulta lista o nome do aluno, o curso que ele fez e a nota da sua avaliação.
+-- Consulta em três tabelas: Essa consulta lista o nome do aluno, o curso que ele fez e a nota da sua avaliação.
 SELECT
     A.nome_aluno,
     C.nome_curso,
@@ -106,3 +139,4 @@ JOIN fundacao.curso AS C
     ON AC.id_curso = C.id_curso
 JOIN fundacao.avaliacao AS AV
     ON C.id_curso = AV.id_curso AND A.id_aluno = AV.id_aluno;
+
