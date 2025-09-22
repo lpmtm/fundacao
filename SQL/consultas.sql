@@ -139,4 +139,3 @@ JOIN fundacao.curso AS C
     ON AC.id_curso = C.id_curso
 JOIN fundacao.avaliacao AS AV
     ON C.id_curso = AV.id_curso AND A.id_aluno = AV.id_aluno;
-
