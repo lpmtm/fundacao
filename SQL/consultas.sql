@@ -1,66 +1,67 @@
 -- Adcionando linhas em todas as tabelas
-SELECT *FROM fundacao.aluno;
-INSERT INTO fundacao.aluno(nome_aluno, email_aluno) VALUES
-('Ian Melo', 'ianmelo@gmail.com'),
-('Alessandro Ribeiro', 'alessandroribeiro@gmail.com'),
-('Amanda Dahm', 'amandadahm@gmail.com'),
-('Eduardo Lima', 'eduardolima@gmail.com');
+SELECT *FROM fundacao.aluno
+INSERT INTO fundacao.aluno(id_aluno, nome_aluno, email_aluno)VALUES
+('30073', 'Caroline Lopes', 'carolinelopes@gmail.com'),
+('30071', 'Ian Melo', 'ianmelo@gmail.com'),
+('30120', 'Alessandro Ribeiro', 'alessandroribeiro@gmail.com'),
+('30022', 'Amanda Dahm', 'amandadahm@gmail.com'),
+('30074', 'Eduardo Lima', 'eduardolima@gmail.com');
 
-SELECT *FROM fundacao.professores;
-INSERT INTO fundacao.professores(nome_professor, email_professor) VALUES
-('Ana Souza', 'ana@plataforma.org'),
-('João Mendes', 'joao@plataforma.org'),
-('Maria Silva', 'maria@plataforma.org'),
-('José Maria', 'jose@plataforma.org'),
-('Fernanda Santos', 'fernanda@plataforma.org');
+SELECT *FROM fundacao.professores
+INSERT INTO fundacao.professores(id_professor, nome_professor, email_professor) VALUES
+('101', 'Ana Souza', 'ana@plataforma.org'),
+('102', 'João Mendes', 'joao@plataforma.org'),
+('103', 'Maria Silva', 'maria@plataforma.org'),
+('104', 'José Maria', 'jose@plataforma.org'),
+('105', 'Fernanda Santos', 'fernanda@plataforma.org');
 
 SELECT *FROM fundacao.patrocinador;
-INSERT INTO fundacao.patrocinador(nome_patrocinador) VALUES
-('Google Brasil'),
-('BRB'),
-('GDF'),
-('SEBRAE'),
-('Alura');
+INSERT INTO fundacao.patrocinador(id_patrocinador, nome_patrocinador) VALUES
+('201', 'Google Brasil'),
+('202', 'BRB'),
+('203', 'GDF'),
+('204', 'SEBRAE'),
+('205', 'Alura');
 
 SELECT *FROM fundacao.curso;
-INSERT INTO fundacao.curso(duracao_curso, nome_curso, nivel_curso)VALUES
-('20h', 'Introdução ao Python', 'Iniciante'),
-('15h', 'Fundamentos de Banco de Dados', 'Iniciante'),
-('25h', 'Redes de Computadores', 'Intermediário'),
-('06h', 'Pensamento Computacional', 'Iniciante'),
-('10h', 'Python com Estrutura de Dados', 'Avançado');
+INSERT INTO fundacao.curso(id_curso, duracao_curso, nome_curso, nivel_curso)VALUES
+('001', '20h', 'Introdução ao Python', 'Iniciante'),
+('002', '15h', 'Fundamentos de Banco de Dados', 'Iniciante'),
+('003', '25h', 'Redes de Computadores', 'Intermediário'),
+('004', '06h', 'Pensamento Computacional', 'Iniciante'),
+('005', '10h', 'Python com Estrutura de Dados', 'Avançado');
 
 SELECT *FROM fundacao.eventos
-INSERT INTO fundacao.eventos(nome_evento, data_eventos, id_curso)VALUES
-('Semana da Tecnologia', '2024-03-02', 1),
-('Tech Wave','2023-07-15', 1),
-('Fábrica de Ideias', '2023-10-26', 1),
-('Mentes em Ação', '2025-01-10', 1),
-('InovaLab', '2025-04-09', 1);
+INSERT INTO fundacao.eventos(id_eventos, nome_evento, data_eventos)VALUES
+('701', 'Semana da Tecnologia', '2024-03-02'),
+('702', 'Tech Wave','2023-07-15'),
+('703', 'Fábrica de Ideias', '2023-10-26'),
+('704', 'Mentes em Ação', '2025-01-10'),
+('705', 'InovaLab', '2025-04-09');
 
 SELECT *FROM fundacao.avaliacao
-INSERT INTO fundacao.avaliacao(nota_avaliacao, id_curso, id_aluno)VALUES
-('8', 1, 1),
-('8', 1, 1),
-('7', 1, 1),
-('7', 1, 1),
-('8', 1, 1);
+INSERT INTO fundacao.avaliacao(id_avaliacao, nota_avaliacao)VALUES
+('901', '8'),
+('902', '8'),
+('903', '7'),
+('904', '7'),
+('905', '8');
 
 SELECT *FROM fundacao.boletim
-INSERT INTO fundacao.boletim(frequencia_boletim, desempenho_boletim)VALUES
-('100', '10'),
-('100', '10'),
-('100', '8'),
-('100', '8'),
-('100', '9');
+INSERT INTO fundacao.boletim(id_boletim, frequencia_boletim, desempenho_boletim)VALUES
+('801', '100', '10'),
+('802', '100', '10'),
+('803', '100', '8'),
+('804', '100', '8'),
+('805', '100', '9');
 
 SELECT *FROM fundacao.certificado
-INSERT INTO fundacao.certificado(data_conclusao)VALUES
-('2024-02-01'),
-('2024-07-01'),
-('2025-10-06'),
-('2025-11-09'),
-('2024-12-12');
+INSERT INTO fundacao.certificado(id_certificado, data_conclusao)VALUES
+('401', '2024-02-01'),
+('402', '2024-07-01'),
+('403', '2025-10-06'),
+('404', '2025-11-09'),
+('405', '2024-12-12');
 
 
 -- Atualizando a tabela fundacao.curso e fundacao.eventos
