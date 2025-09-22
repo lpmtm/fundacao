@@ -1,24 +1,24 @@
 CREATE SCHEMA IF NOT EXISTS fundacao;
 
 CREATE TABLE fundacao.aluno (		--populada 
-    id_aluno INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    id_aluno INT PRIMARY KEY,
     nome_aluno VARCHAR(100) NOT NULL,
     email_aluno VARCHAR(100) NOT NULL
 );
 
 CREATE TABLE fundacao.professores (		--populada 
-    id_professor INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    id_professor INT PRIMARY KEY,
     email_professor VARCHAR(100) NOT NULL,
     nome_professor VARCHAR(100) NOT NULL
 );
 
 CREATE TABLE fundacao.patrocinador (		--populada 
-    id_patrocinador INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    id_patrocinador INT PRIMARY KEY,
     nome_patrocinador VARCHAR(100) NOT NULL
 );
 
 CREATE TABLE fundacao.curso (				--populada
-    id_curso SERIAL PRIMARY KEY,
+    id_curso INT PRIMARY KEY,
     duracao_curso INTERVAL NOT NULL,
 	nome_curso VARCHAR(100) NOT NULL,
 	nivel_curso VARCHAR(100) NOT NULL,
@@ -27,21 +27,21 @@ CREATE TABLE fundacao.curso (				--populada
 );
 
 CREATE TABLE fundacao.eventos (			--populada
-    id_eventos INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    id_eventos INT PRIMARY KEY,
 	nome_evento VARCHAR(100) NOT NULL,
     data_eventos DATE NOT NULL,
     id_curso INT REFERENCES fundacao.curso(id_curso)
 );
 
 CREATE TABLE fundacao.avaliacao (		--populada
-    id_avaliacao INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    id_avaliacao INT PRIMARY KEY,
     nota_avaliacao INT NOT NULL,
     id_curso INT REFERENCES fundacao.curso(id_curso),
     id_aluno INT REFERENCES fundacao.aluno(id_aluno)
 );
 
 CREATE TABLE fundacao.boletim (			--populada
-    id_boletim INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    id_boletim INT PRIMARY KEY,
     frequencia_boletim INT NOT NULL,
     desempenho_boletim NUMERIC NOT NULL,
     id_curso INT REFERENCES fundacao.curso(id_curso),
@@ -50,7 +50,7 @@ CREATE TABLE fundacao.boletim (			--populada
 );
 
 CREATE TABLE fundacao.certificado (		--populada
-    id_certificado INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    id_certificado INT PRIMARY KEY,
     data_conclusao DATE NOT NULL,
     id_curso INT REFERENCES fundacao.curso(id_curso),
     id_boletim INT REFERENCES fundacao.boletim(id_boletim),
@@ -106,4 +106,4 @@ CREATE TABLE fundacao.aluno_avaliacao (
     PRIMARY KEY (id_aluno, id_avaliacao)
 );
 
--- As inserções estao no doc de consultas
+--as consultas estão no outro doc
